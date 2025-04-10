@@ -7,6 +7,8 @@ public abstract class Pokemon{
     protected HashMap<String, Integer> stats;
     protected HashMap<String, Integer> moves;
     protected ArrayList<String> typearray;
+    protected ArrayList<String> key;
+    protected ArrayList<Integer> value;
     protected String name;
     protected String type;
     protected boolean weakness;
@@ -19,28 +21,19 @@ public abstract class Pokemon{
         this.type = "Normal";
         this.tera = false;
         this.weakness = false;
+        this.key = new ArrayList<>();
+        this.value = new ArrayList<>();
         this.typearray = new ArrayList<>();
     }
-
-    public abstract void setname(String name);
-
-    public abstract String getname();
-
-    public abstract void settype(String type);
+    public abstract void setType(String filename);
 
     public abstract String getType();
 
-    public abstract void addmove(String movename, Integer basepower);
+    public abstract void addmove(String filename);
 
-    public abstract void addstat(String stat, Integer statamount);
+    public abstract void addstat(String filename);
 
     public abstract Integer getstat(String stat);
 
-    public abstract boolean checkweakness(String filetype, Pokemon opponent);
-
     public abstract Float calcdamage(String move);
-
-    public abstract void storestatsdata(String statsfile);
-
-    public abstract void storemovedata(String movefile);
 }

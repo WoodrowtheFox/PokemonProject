@@ -1,23 +1,23 @@
 package ethan.cs1622.pokemonshowdown;
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.Random;
 
 public class Lucario extends Pokemon{
+
     public Lucario(){super();}
 
     @Override
-    public void setname(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String getname() {
-        return this.name;
-    }
-
-    @Override
-    public void settype(String type) {
-        this.type = type;
+    public void setType(String filename) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] valueinrow = line.split(" ");
+                this.type = (valueinrow[0]);}}
+        catch (IOException o) {
+            o.getMessage();
+        }
     }
 
     @Override
@@ -26,13 +26,43 @@ public class Lucario extends Pokemon{
     }
 
     @Override
-    public void addmove(String movename, Integer basepower) {
-        moves.put(movename, basepower);
+    public void addmove(String filename) {
+        int total = 0;
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] valueinrow = line.split(" ");
+                this.key.add(valueinrow[0]);
+                this.value.add(Integer.valueOf(valueinrow[1]));
+            }
+            for (String i : key){
+                moves.put(i, value.get(total));
+                total += 1;
+            }
+        }
+        catch (IOException o) {
+            o.getMessage();
+        }
     }
 
     @Override
-    public void addstat(String stat, Integer statamount) {
-        stats.put(stat, statamount);
+    public void addstat(String filename) {
+        int total = 0;
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] valueinrow = line.split(" ");
+                this.key.add(valueinrow[0]);
+                this.value.add(Integer.valueOf(valueinrow[1]));
+            }
+            for (String i : key){
+                stats.put(i, value.get(total));
+                total += 1;
+            }
+        }
+        catch (IOException o) {
+            o.getMessage();
+        }
     }
 
     @Override
@@ -41,60 +71,8 @@ public class Lucario extends Pokemon{
     }
 
     @Override
-    public boolean checkweakness(String filetype, Pokemon opponent) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filetype))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] valueinrow = line.split(" ");
-                this.typearray.add(valueinrow[0]);
-            }
-        }
-        catch (IOException o) {
-            o.getMessage();
-        }
-        if(typearray.contains(opponent.getType())){return true;}
-        else{return false;}
-    }
-
-    @Override
     public Float calcdamage(String move) {
         Damagefactory factory = new Damagefactory(moves, move);
         return factory.damagefactory();
-    }
-
-    @Override
-    public void storestatsdata(String statsfile) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(statsfile))){
-            for (String i : stats.keySet()){
-                writer.write(i);
-                writer.write(" ");
-                writer.write(stats.get(i));
-                writer.newLine();
-            }
-        }
-        catch (FileNotFoundException fnf){
-            System.out.println(fnf.getMessage());
-        }
-        catch (IOException o){
-            System.out.println(o.getMessage());
-        }
-    }
-
-    @Override
-    public void storemovedata(String movefile) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(movefile))){
-            for (String i : moves.keySet()){
-                writer.write(i);
-                writer.write(" ");
-                writer.write(moves.get(i));
-                writer.newLine();
-            }
-        }
-        catch (FileNotFoundException fnf){
-            System.out.println(fnf.getMessage());
-        }
-        catch (IOException o){
-            System.out.println(o.getMessage());
-        }
     }
 }

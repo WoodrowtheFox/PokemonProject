@@ -1,11 +1,9 @@
 package ethan.cs1622.pokemonshowdown;
 import javafx.application.Application;
+import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -28,7 +26,8 @@ import static javafx.application.Application.launch;
 public class Set extends Application {
     DataStorage storage = new DataStorage();
 
-    private Pane drawingPane;
+    private BorderPane drawingPane;
+    private BorderPane pane;
 
     CheckBox circle = new CheckBox("Circle");
     CheckBox square = new CheckBox("Square");
@@ -43,6 +42,7 @@ public class Set extends Application {
     TextField movename = new TextField();
     TextField movevalue = new TextField();
     TextField pokemonnames = new TextField();
+    TextField typename = new TextField();
 
     Pane elements = new Pane();
     Scene scene = new Scene(elements, 640, 480);
@@ -54,14 +54,16 @@ public class Set extends Application {
     @Override
     public void start(Stage stage) {
         stage.setTitle("Pokemon Data");
-        drawingPane = new Pane();
+        drawingPane = new BorderPane();
 
         HBox buttons = new HBox();
         HBox color = new HBox();
         VBox labels = new VBox();
         VBox textboxes = new VBox();
-        BorderPane pane = new BorderPane();
+        pane = new BorderPane();
 
+        Button types = new Button();
+        types.setText("Save Type");
         Button setmoves = new Button();
         setmoves.setText("Save Move Data");
 
@@ -76,20 +78,22 @@ public class Set extends Application {
         Label move = new Label("Movename");
         Label move_value = new Label("Basepower");
         Label pokemonname = new Label("Pokemon Name");
+        Label type = new Label("Pokemon Type");
         Label pokemon = new Label("Draw a Pokemon!");
 
         color.getChildren().addAll(circle, square, red, blue, green, yellow, purple);
         color.setSpacing(30);
 
-        labels.getChildren().addAll(stat, statvalue, move, move_value, pokemonname, pokemon);
+        labels.getChildren().addAll(stat, statvalue, move, move_value, pokemonname, type, pokemon);
         labels.setSpacing(30);
 
-        buttons.getChildren().addAll(setmoves, setstats, storealldata);
+        buttons.getChildren().addAll(types, setmoves, setstats, storealldata);
         buttons.setSpacing(30);
 
-        textboxes.getChildren().addAll(statname, statamount, movename, movevalue, pokemonnames);
+        textboxes.getChildren().addAll(statname, statamount, movename, movevalue, pokemonnames, typename);
         textboxes.setSpacing(20);
-
+        drawingPane.setLayoutX(30);
+        drawingPane.setLayoutY(30);
         pane.setBottom(color);
         pane.setCenter(textboxes);
         pane.setLeft(labels);
@@ -98,12 +102,14 @@ public class Set extends Application {
         scene.setOnMouseClicked(this::drawpokemon);
         setmoves.setOnAction(this::storemovedata);
         setstats.setOnAction(this::storestatsdata);
+        types.setOnAction(this::setype);
         storealldata.setOnAction(this::storefinaldata);
         elements.getChildren().addAll(pane, drawingPane);
         stage.setScene(scene);
         stage.show();
     }
-    private void drawpokemon(MouseEvent mouseEvent) {
+    private void drawpokemon(MouseEvent mouseEvent){
+
         if (circle.isSelected()) {
             Circle circ = new Circle();
 
@@ -121,7 +127,7 @@ public class Set extends Application {
             drawingPane.getChildren().addAll(circ);
         }
         else if(square.isSelected()){
-            Rectangle rectangle = new Rectangle(10, 10);
+            Rectangle rectangle = new Rectangle(20, 20);
 
             rectangle.setX(mouseEvent.getSceneX());
             rectangle.setY(mouseEvent.getSceneY());
@@ -136,22 +142,42 @@ public class Set extends Application {
             drawingPane.getChildren().addAll(rectangle);
         }
     }
+    public void setype(ActionEvent e){
+        storage.setType(typename.getText());
+    }
     public void storestatsdata(ActionEvent e){
-        storage.addstats(statname.getText(), Integer.valueOf(statamount.getText()));
+        storage.addstats(statname.getText(), statamount.getText());
     }
     public void storemovedata(ActionEvent e){
-        storage.addmoveset(movename.getText(), Integer.valueOf(movevalue.getText()));
+        storage.addmoveset(movename.getText(), movevalue.getText());
     }
     public void storefinaldata(ActionEvent e){
+        HashMap<String, String> stats = storage.getstats();
+        HashMap<String, String> moveset = storage.getmoves();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(pokemonnames.getText() + ".txt"))) {
-            HashMap<String, Integer> stats = storage.getstats();
-            HashMap<String, Integer> moveset = storage.getmoves();
+            writer.write(storage.getType());
+        }
+        catch (FileNotFoundException fnf){
+            System.out.println(fnf.getMessage());
+        }
+        catch (IOException o){
+            System.out.println(o.getMessage());
+        }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(pokemonnames.getText()+ "stats" + ".txt"))) {
             for (String i : stats.keySet()) {
                 writer.write(i);
                 writer.write(" ");
                 writer.write(stats.get(i));
                 writer.newLine();
             }
+        }
+        catch (FileNotFoundException fnf){
+            System.out.println(fnf.getMessage());
+        }
+        catch (IOException o){
+            System.out.println(o.getMessage());
+        }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(pokemonnames.getText() + "moves" + ".txt"))) {
             for (String i : moveset.keySet()) {
                 writer.write(i);
                 writer.write(" ");
