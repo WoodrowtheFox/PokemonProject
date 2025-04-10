@@ -1,5 +1,4 @@
 package ethan.cs1622.pokemonshowdown;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
@@ -22,12 +21,13 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 import static javafx.application.Application.launch;
-
 public class Set extends Application {
-    private ArrayList
+    DataStorage storage = new DataStorage();
+
     private Pane drawingPane;
 
     CheckBox circle = new CheckBox("Circle");
@@ -84,7 +84,7 @@ public class Set extends Application {
         labels.getChildren().addAll(stat, statvalue, move, move_value, pokemonname, pokemon);
         labels.setSpacing(30);
 
-        buttons.getChildren().addAll(setmoves, setstats);
+        buttons.getChildren().addAll(setmoves, setstats, storealldata);
         buttons.setSpacing(30);
 
         textboxes.getChildren().addAll(statname, statamount, movename, movevalue, pokemonnames);
@@ -96,6 +96,9 @@ public class Set extends Application {
         pane.setTop(buttons);
 
         scene.setOnMouseClicked(this::drawpokemon);
+        setmoves.setOnAction(this::storemovedata);
+        setstats.setOnAction(this::storestatsdata);
+        storealldata.setOnAction(this::storefinaldata);
         elements.getChildren().addAll(pane, drawingPane);
         stage.setScene(scene);
         stage.show();
@@ -133,28 +136,26 @@ public class Set extends Application {
             drawingPane.getChildren().addAll(rectangle);
         }
     }
-    public void storestatsdata(ActionEvent e) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(statsfile))){
-            for (String i : stats.keySet()){
+    public void storestatsdata(ActionEvent e){
+        storage.addstats(statname.getText(), Integer.valueOf(statamount.getText()));
+    }
+    public void storemovedata(ActionEvent e){
+        storage.addmoveset(movename.getText(), Integer.valueOf(movevalue.getText()));
+    }
+    public void storefinaldata(ActionEvent e){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(pokemonnames.getText() + ".txt"))) {
+            HashMap<String, Integer> stats = storage.getstats();
+            HashMap<String, Integer> moveset = storage.getmoves();
+            for (String i : stats.keySet()) {
                 writer.write(i);
                 writer.write(" ");
                 writer.write(stats.get(i));
                 writer.newLine();
             }
-        }
-        catch (FileNotFoundException fnf){
-            System.out.println(fnf.getMessage());
-        }
-        catch (IOException o){
-            System.out.println(o.getMessage());
-        }
-    }
-    public void storemovedata(ActionEvent e) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(movefile))){
-            for (String i : moves.keySet()){
+            for (String i : moveset.keySet()) {
                 writer.write(i);
                 writer.write(" ");
-                writer.write(moves.get(i));
+                writer.write(moveset.get(i));
                 writer.newLine();
             }
         }
