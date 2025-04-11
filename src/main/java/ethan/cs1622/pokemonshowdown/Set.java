@@ -23,6 +23,10 @@ import java.util.HashMap;
 import java.util.Random;
 
 import static javafx.application.Application.launch;
+
+/**
+ * This is the class used to set data about pokemon
+ */
 public class Set extends Application {
     DataStorage storage = new DataStorage();
 
@@ -46,11 +50,13 @@ public class Set extends Application {
 
     Pane elements = new Pane();
     Scene scene = new Scene(elements, 640, 480);
-
     public static void main(String[] args) {
         launch(args);
     }
-
+    /**
+     * This is the creation of the stage and the elements found within it
+     * @param stage - The inital blank stage
+     */
     @Override
     public void start(Stage stage) {
         stage.setTitle("Pokemon Data");
@@ -108,6 +114,11 @@ public class Set extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * This is used for drawing pokemon when a shape and color are selected on the stage
+     * @param mouseEvent - The mouse being clicked on the screen
+     */
     private void drawpokemon(MouseEvent mouseEvent){
 
         if (circle.isSelected()) {
@@ -142,15 +153,32 @@ public class Set extends Application {
             drawingPane.getChildren().addAll(rectangle);
         }
     }
+    /**
+     * This is used to set the type of the pokemon
+     * @param e - The button being clicked
+     */
     public void setype(ActionEvent e){
         storage.setType(typename.getText());
     }
+    /**
+     * This is used for temporary storage of the stats of the pokemon
+     * @param e - The button being clicked
+     */
     public void storestatsdata(ActionEvent e){
         storage.addstats(statname.getText(), statamount.getText());
     }
+    /**
+     * This is used for temporary storage of the moves of the pokemon
+     * @param e - The button being clicked
+     */
     public void storemovedata(ActionEvent e){
         storage.addmoveset(movename.getText(), movevalue.getText());
     }
+    /**
+     * This is used for the final storage of data and puts them into there own csv files for
+     * later retrevial
+     * @param e - The button being clicked
+     */
     public void storefinaldata(ActionEvent e){
         HashMap<String, String> stats = storage.getstats();
         HashMap<String, String> moveset = storage.getmoves();

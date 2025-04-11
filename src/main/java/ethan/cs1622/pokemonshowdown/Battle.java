@@ -21,6 +21,9 @@ import java.util.HashMap;
 import java.util.Random;
 
 import static javafx.application.Application.launch;
+/**
+ * This is the main part of the program that is used the actual battles
+ */
 public class Battle extends Application {
 
     private Pokemon player;
@@ -50,7 +53,10 @@ public class Battle extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
+    /**
+     * This is the creation of the stage and the elements found within it
+     * @param stage - The inital blank stage
+     */
     @Override
     public void start(Stage stage) {
         stage.setTitle("Pokemon Battle");
@@ -105,6 +111,10 @@ public class Battle extends Application {
         stage.setScene(scene);
         stage.show();
     }
+    /**
+     * This is used to set the opponents and the players pokemon that are being used
+     * @param e The button being clicked
+     */
     public void setpokemon(ActionEvent e){
         PokemonFactory factory = new PokemonFactory();
         this.player = factory.factory(player_pokemon.getText());
@@ -114,23 +124,43 @@ public class Battle extends Application {
         opponent.addmove((oppnent_pokemon.getText()+ "moves" + ".txt"));
         opponent.addstat((oppnent_pokemon.getText()+ "stats" + ".txt"));
     }
+    /**
+     * This is used for calculating the effects of the players move
+     * @param e The button being clicked
+     */
     public void player(ActionEvent e){
         Float value = player.calcdamage(player_move.getText(), player, player_stat.getText());
         opponenthealthset(value);
     }
+    /**
+     * This is used for calculating the effects of the opponents move
+     * @param e The button being clicked
+     */
     public void oppnent(ActionEvent e){
         Float value = opponent.calcdamage(oppnent_pokemon.getText(), opponent, oppnent_stat.getText());
         playerhealthset(value);
     }
+    /**
+     * This is used to change the players health after an opponents move
+     * @param value - The value of the damage
+     */
     public void playerhealthset(Float value){
         if(player.getHealth() > 0){player.setHealth((player.getHealth() - value));}
         else{System.out.println("You Wins!");}
     }
+    /**
+     This is used to change the opponents health after a players move
+     * @param value - The value of the damage
+     */
     public void opponenthealthset(Float value){
         if(opponent.getHealth() > 0){opponent.setHealth((opponent.getHealth() - value));}
         else{System.out.println("You Wins!");}
     }
-    private void drawpokemon(MouseEvent mouseEvent){
+    /**
+     * This is used for drawing pokemon when a shape and color are selected on the stage
+     * @param mouseEvent - The mouse being clicked on the screen
+     */
+    public void drawpokemon(MouseEvent mouseEvent){
 
         if (circle.isSelected()) {
             Circle circ = new Circle();
