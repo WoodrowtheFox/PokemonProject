@@ -1,0 +1,1 @@
+SpecialAttack 80

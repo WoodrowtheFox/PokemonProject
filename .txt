@@ -1,0 +1,8 @@
+Stats
+Speed 120
+Special Attack 90
+Special Defense 100
+Attack 90
+Defense 80
+Moveset
+Surf 90
