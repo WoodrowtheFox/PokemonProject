@@ -12,12 +12,15 @@ public class Damagefactory {
         this.rand = new Random();
         this.critcalhit = rand.nextInt(0,25);
         this.damageroll = rand.nextFloat(0.75f, 1.25f);
-        this.basepower = moves.get(move);
+        this.basepower = Integer.valueOf(moves.get(move));
     }
-    public Float damagefactory(){
-        if(critcalhit == 1){
-            return 1.25f * basepower * damageroll;
-        }
-        else{return basepower * damageroll;}
+    public Float damagefactory(Pokemon pokemon, String stat, float health){
+        if(health > 0){
+            if(critcalhit == 1){
+                return (1.25f * basepower) + (pokemon.getstat(stat) * damageroll);
+            }
+            else{
+                return basepower + (pokemon.getstat(stat) * damageroll);}}
+        else{return 0.0f;}
     }
 }
