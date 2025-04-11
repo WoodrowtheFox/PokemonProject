@@ -116,7 +116,6 @@ public class Battle extends Application {
     }
     public void player(ActionEvent e){
         Float value = player.calcdamage(player_move.getText(), player, player_stat.getText());
-        System.out.println(value);
         opponenthealthset(value);
     }
     public void oppnent(ActionEvent e){
@@ -124,11 +123,11 @@ public class Battle extends Application {
         playerhealthset(value);
     }
     public void playerhealthset(Float value){
-        if(value > 0){player.setHealth((player.getHealth() - value));}
+        if(player.getHealth() > 0){player.setHealth((player.getHealth() - value));}
         else{System.out.println("You Wins!");}
     }
     public void opponenthealthset(Float value){
-        if(value > 0){opponent.setHealth((opponent.getHealth() - value));}
+        if(opponent.getHealth() > 0){opponent.setHealth((opponent.getHealth() - value));}
         else{System.out.println("You Wins!");}
     }
     private void drawpokemon(MouseEvent mouseEvent){
