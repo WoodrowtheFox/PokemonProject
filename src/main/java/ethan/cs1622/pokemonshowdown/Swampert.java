@@ -26,6 +26,16 @@ public class Swampert extends Pokemon{
     }
 
     @Override
+    public void setHealth(float health) {
+        this.health = health;
+    }
+
+    @Override
+    public float getHealth() {
+        return this.health;
+    }
+
+    @Override
     public void addmove(String filename) {
         int total = 0;
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
@@ -44,7 +54,6 @@ public class Swampert extends Pokemon{
             o.getMessage();
         }
     }
-
     @Override
     public void addstat(String filename) {
         int total = 0;
@@ -71,8 +80,8 @@ public class Swampert extends Pokemon{
     }
 
     @Override
-    public Float calcdamage(String move) {
+    public Float calcdamage(String move, Pokemon pokemon, String stat) {
         Damagefactory factory = new Damagefactory(moves, move);
-        return factory.damagefactory();
+        return factory.damagefactory(pokemon, stat, getHealth());
     }
 }

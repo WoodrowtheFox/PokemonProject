@@ -11,12 +11,14 @@ public abstract class Pokemon{
     protected ArrayList<Integer> value;
     protected String name;
     protected String type;
+    protected float health;
     protected boolean weakness;
     protected boolean tera;
 
     public Pokemon(){
         this.stats = new HashMap<>();
         this.moves = new HashMap<>();
+        this.health = 500.0f;
         this.name = "Unknown";
         this.type = "Normal";
         this.tera = false;
@@ -29,11 +31,15 @@ public abstract class Pokemon{
 
     public abstract String getType();
 
+    public abstract void setHealth(float health);
+
+    public abstract float getHealth();
+
     public abstract void addmove(String filename);
 
     public abstract void addstat(String filename);
 
     public abstract Integer getstat(String stat);
 
-    public abstract Float calcdamage(String move);
+    public abstract Float calcdamage(String move, Pokemon pokemon, String stat);
 }

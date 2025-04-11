@@ -24,6 +24,15 @@ public class Lucario extends Pokemon{
     public String getType() {
         return this.type;
     }
+    @Override
+    public void setHealth(float health) {
+        this.health = health;
+    }
+
+    @Override
+    public float getHealth() {
+        return this.health;
+    }
 
     @Override
     public void addmove(String filename) {
@@ -71,8 +80,8 @@ public class Lucario extends Pokemon{
     }
 
     @Override
-    public Float calcdamage(String move) {
+    public Float calcdamage(String move, Pokemon pokemon, String stat) {
         Damagefactory factory = new Damagefactory(moves, move);
-        return factory.damagefactory();
+        return factory.damagefactory(pokemon, stat, getHealth());
     }
 }
