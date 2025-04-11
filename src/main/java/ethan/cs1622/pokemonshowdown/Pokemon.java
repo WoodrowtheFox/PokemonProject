@@ -41,5 +41,7 @@ public abstract class Pokemon{
 
     public abstract Integer getstat(String stat);
 
+    public abstract Integer getmove(String move);
+
     public abstract Float calcdamage(String move, Pokemon pokemon, String stat);
 }

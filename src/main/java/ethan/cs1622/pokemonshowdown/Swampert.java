@@ -80,8 +80,13 @@ public class Swampert extends Pokemon{
     }
 
     @Override
+    public Integer getmove(String move) {
+        return moves.get(move);
+    }
+
+    @Override
     public Float calcdamage(String move, Pokemon pokemon, String stat) {
-        Damagefactory factory = new Damagefactory(moves, move);
+        Damagefactory factory = new Damagefactory(getmove(move));
         return factory.damagefactory(pokemon, stat, getHealth());
     }
 }

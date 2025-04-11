@@ -8,11 +8,11 @@ public class Damagefactory {
     private int critcalhit;
     private float damageroll;
     private Integer basepower;
-    public Damagefactory(HashMap<String, Integer> moves, String move){
+    public Damagefactory(Integer basepower){
         this.rand = new Random();
         this.critcalhit = rand.nextInt(0,25);
         this.damageroll = rand.nextFloat(0.75f, 1.25f);
-        this.basepower = Integer.valueOf(moves.get(move));
+        this.basepower = basepower;
     }
     public Float damagefactory(Pokemon pokemon, String stat, float health){
         if(health > 0){
