@@ -1,11 +1,10 @@
 package ethan.cs1622.pokemonshowdown;
-
 /**
  * This class is used as a factory to return a new pokemon if needed
  */
 public class PokemonFactory {
     /**
-     * This factory the creates the pokemon
+     * The factory that creates the pokemon
      * @param name - name of the pokemon
      * @return - the new pokemon
      */

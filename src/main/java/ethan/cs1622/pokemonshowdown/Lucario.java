@@ -1,5 +1,4 @@
 package ethan.cs1622.pokemonshowdown;
-
 import java.io.*;
 /**
  * This is the class for the pokemon Lucario
@@ -121,7 +120,7 @@ public class Lucario extends Pokemon{
      * This is used to get a name of a move if cpu is selected
      *
      * @param value - a randomly generated value
-     * @return - return the move name
+     * @return - returns the move name
      */
     @Override
     public String getmovename(int value) {
@@ -132,7 +131,7 @@ public class Lucario extends Pokemon{
      * This is used to get a name of a stat if cpu is selected
      *
      * @param value - a randomly generated value
-     * @return - return the stat name
+     * @return - returns the stat name
      */
     @Override
     public String getstatname(int value) {
@@ -152,7 +151,6 @@ public class Lucario extends Pokemon{
         Damagefactory factory = new Damagefactory(getmove(move));
         return factory.damagefactory(attackerpokemon, defenderpokemon, stat, getHealth(), move);
     }
-
     /**
      * This is the method used to set weaknesses
      */
@@ -169,7 +167,6 @@ public class Lucario extends Pokemon{
             o.getMessage();
         }
     }
-
     /**
      * This is the method used to set strengths
      */
@@ -195,7 +192,6 @@ public class Lucario extends Pokemon{
     public boolean getweakness(String type) {
         return weakness.contains(type);
     }
-
     /**
      * This is used to get a strength value
      *

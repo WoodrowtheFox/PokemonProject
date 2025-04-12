@@ -127,7 +127,6 @@ public class Blaziken extends Pokemon{
     public String getmovename(int value) {
         return cpumoves.get(value);
     }
-
     /**
      * This is used to get a name of a stat if cpu is selected
      *
@@ -138,7 +137,6 @@ public class Blaziken extends Pokemon{
     public String getstatname(int value) {
         return cpustats.get(value);
     }
-
     /**
      * This is used for calulating the damage done by a move
      * @param move - The move being used
@@ -152,7 +150,6 @@ public class Blaziken extends Pokemon{
         Damagefactory factory = new Damagefactory(getmove(move));
         return factory.damagefactory(attackerpokemon, defenderpokemon, stat, getHealth(), move);
     }
-
     /**
      * This is the method used to set weaknesses
      */
@@ -169,7 +166,6 @@ public class Blaziken extends Pokemon{
             o.getMessage();
         }
     }
-
     /**
      * This is the method used to set strengths
      */
@@ -195,7 +191,6 @@ public class Blaziken extends Pokemon{
     public boolean getweakness(String type) {
         return weakness.contains(type);
     }
-
     /**
      * This is used to get a strength value
      *

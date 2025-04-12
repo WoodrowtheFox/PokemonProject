@@ -3,7 +3,6 @@ package ethan.cs1622.pokemonshowdown;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * This is the class for testing the pokemon factory class
  */

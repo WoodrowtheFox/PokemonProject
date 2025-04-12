@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * This is the class used to test Datastorage
  */

@@ -138,7 +138,6 @@ public class Swampert extends Pokemon{
     public String getstatname(int value) {
         return cpustats.get(value);
     }
-
     /**
      * This is used for calulating the damage done by a move
      * @param move - The move being used
@@ -152,7 +151,6 @@ public class Swampert extends Pokemon{
         Damagefactory factory = new Damagefactory(getmove(move));
         return factory.damagefactory(attackerpokemon, defenderpokemon, stat, getHealth(), move);
     }
-
     /**
      * This is the method used to set weaknesses
      */
@@ -169,7 +167,6 @@ public class Swampert extends Pokemon{
             o.getMessage();
         }
     }
-
     /**
      * This is the method used to set strengths
      */
@@ -195,7 +192,6 @@ public class Swampert extends Pokemon{
     public boolean getweakness(String type) {
         return weakness.contains(type);
     }
-
     /**
      * This is used to get a strength value
      *

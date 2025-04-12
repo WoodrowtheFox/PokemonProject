@@ -3,7 +3,6 @@ package ethan.cs1622.pokemonshowdown;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * This is the class used to test the Blaziken pokemon
  */
@@ -27,8 +26,6 @@ class BlazikenTest {
 
         blaziken.addmove("Swampertmoves.txt");
         assertEquals(100, blaziken.getmove("Surf"));
-
-
     }
     /**
      * This is the actual test for the calc of damage

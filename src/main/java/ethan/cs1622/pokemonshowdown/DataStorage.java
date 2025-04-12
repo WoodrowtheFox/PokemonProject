@@ -1,6 +1,5 @@
 package ethan.cs1622.pokemonshowdown;
 import java.util.HashMap;
-
 /**
  * This is the class used for storing data during the setting of pokemon data
  */
@@ -79,21 +78,21 @@ public class DataStorage {
         return this.movetype.get(move);
     }
     /**
-     * This is used to get the stats hashmap to been iterated through
+     * This is used to get the stats hashmap to be iterated through
      * @return - the hashmap
      */
     public HashMap<String, String> getstats(){
         return this.stats;
     }
     /**
-     * This is used to get the move hashmap to been iterated through
+     * This is used to get the move hashmap to be iterated through
      * @return - the hashmap
      */
     public HashMap<String, String> getmoves(){
         return this.moveset;
     }
     /**
-     * This is used to get the movetype hashmap to been iterated through
+     * This is used to get the movetype hashmap to be iterated through
      * @return - the hashmap
      */
     public HashMap<String, String> getmovetyppes(){

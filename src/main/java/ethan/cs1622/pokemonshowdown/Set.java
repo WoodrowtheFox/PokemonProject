@@ -110,7 +110,6 @@ public class Set extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
     /**
      * This is used for drawing pokemon when a shape and color are selected on the stage
      * @param mouseEvent - The mouse being clicked on the screen
@@ -172,7 +171,7 @@ public class Set extends Application {
         storage.addmovetype(movename.getText(), movetype.getText());
     }
     /**
-     * This is used for the final storage of data and puts them into there own csv files for
+     * This is used for the final storage of data and puts them into their own csv files for
      * later retrevial
      * @param e - The button being clicked
      */

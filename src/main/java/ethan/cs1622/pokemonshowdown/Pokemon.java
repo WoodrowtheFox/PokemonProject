@@ -93,7 +93,7 @@ public abstract class Pokemon{
      * This is used for calulating the damage done by a move
      * @param move - The move being used
      * @param attackerpokemon - The pokemon who used the move
-     * @param defenderpokemon - The pokemon who used the is defending
+     * @param defenderpokemon - The pokemon who is defending
      * @param stat - The stat that the move is using
      * @return - returns the damage that was done
      */
