@@ -129,7 +129,7 @@ public class Battle extends Application {
      * @param e The button being clicked
      */
     public void player(ActionEvent e){
-        Float value = player.calcdamage(player_move.getText(), player, player_stat.getText());
+        Float value = player.calcdamage(player_move.getText(), player, opponent, player_stat.getText());
         opponenthealthset(value);
     }
     /**
@@ -137,7 +137,7 @@ public class Battle extends Application {
      * @param e The button being clicked
      */
     public void oppnent(ActionEvent e){
-        Float value = opponent.calcdamage(oppnent_pokemon.getText(), opponent, oppnent_stat.getText());
+        Float value = opponent.calcdamage(oppnent_pokemon.getText(), opponent, player, oppnent_stat.getText());
         playerhealthset(value);
     }
     /**

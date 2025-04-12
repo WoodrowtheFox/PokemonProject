@@ -43,6 +43,7 @@ public class Set extends Application {
 
     TextField statname = new TextField();
     TextField statamount = new TextField();
+    TextField movetype = new TextField();
     TextField movename = new TextField();
     TextField movevalue = new TextField();
     TextField pokemonnames = new TextField();
@@ -81,6 +82,7 @@ public class Set extends Application {
 
         Label stat = new Label("Stat");
         Label statvalue = new Label("Stat-Value");
+        Label movetpename = new Label("Move Type");
         Label move = new Label("Movename");
         Label move_value = new Label("Basepower");
         Label pokemonname = new Label("Pokemon Name");
@@ -90,13 +92,13 @@ public class Set extends Application {
         color.getChildren().addAll(circle, square, red, blue, green, yellow, purple);
         color.setSpacing(30);
 
-        labels.getChildren().addAll(stat, statvalue, move, move_value, pokemonname, type, pokemon);
+        labels.getChildren().addAll(stat, statvalue,movetpename, move, move_value, pokemonname, type, pokemon);
         labels.setSpacing(30);
 
         buttons.getChildren().addAll(types, setmoves, setstats, storealldata);
         buttons.setSpacing(30);
 
-        textboxes.getChildren().addAll(statname, statamount, movename, movevalue, pokemonnames, typename);
+        textboxes.getChildren().addAll(statname, statamount, movetype, movename, movevalue, pokemonnames, typename);
         textboxes.setSpacing(20);
         drawingPane.setLayoutX(30);
         drawingPane.setLayoutY(30);
@@ -173,6 +175,7 @@ public class Set extends Application {
      */
     public void storemovedata(ActionEvent e){
         storage.addmoveset(movename.getText(), movevalue.getText());
+        storage.addmovetype(movename.getText(), movetype.getText());
     }
     /**
      * This is used for the final storage of data and puts them into there own csv files for
@@ -182,6 +185,7 @@ public class Set extends Application {
     public void storefinaldata(ActionEvent e){
         HashMap<String, String> stats = storage.getstats();
         HashMap<String, String> moveset = storage.getmoves();
+        HashMap<String, String> movetype = storage.getmovetyppes();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(pokemonnames.getText() + ".txt"))) {
             writer.write(storage.getType());
         }
@@ -208,6 +212,8 @@ public class Set extends Application {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(pokemonnames.getText() + "moves" + ".txt"))) {
             for (String i : moveset.keySet()) {
                 writer.write(i);
+                writer.write(" ");
+                writer.write(movetype.get(i));
                 writer.write(" ");
                 writer.write(moveset.get(i));
                 writer.newLine();

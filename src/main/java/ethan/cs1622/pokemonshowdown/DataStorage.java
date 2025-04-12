@@ -7,11 +7,13 @@ import java.util.HashMap;
 public class DataStorage extends Set{
     private HashMap<String, String> stats;
     private HashMap<String, String> moveset;
+    private HashMap<String, String> movetype;
     private String type;
 
     public DataStorage(){
         this.stats = new HashMap<>();
         this.moveset = new HashMap<>();
+        this.movetype = new HashMap<>();
         this.type = "Normal";
     }
     /**
@@ -29,6 +31,14 @@ public class DataStorage extends Set{
      */
     public void addmoveset(String move, String power){
         this.moveset.put(move, power);
+    }
+    /**
+     * This is used to store the movetype data
+     * @param move - the name of the move
+     * @param movetype - the type of the move
+     */
+    public  void addmovetype(String move, String movetype){
+        this.movetype.put(move, movetype);
     }
     /**
      * This stores the pokemons type in a string
@@ -73,5 +83,12 @@ public class DataStorage extends Set{
      */
     public HashMap<String, String> getmoves(){
         return this.moveset;
+    }
+    /**
+     * This is used to get the movetype hashmap to been iterated through
+     * @return - the hashmap
+     */
+    public HashMap<String, String> getmovetyppes(){
+        return this.movetype;
     }
 }

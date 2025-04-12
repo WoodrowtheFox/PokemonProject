@@ -6,26 +6,28 @@ import java.util.HashMap;
 public abstract class Pokemon{
     protected HashMap<String, Integer> stats;
     protected HashMap<String, Integer> moves;
-    protected ArrayList<String> typearray;
+    protected HashMap<String, String> movestypes;
     protected ArrayList<String> key;
     protected ArrayList<Integer> value;
     protected String name;
     protected String type;
     protected float health;
-    protected boolean weakness;
     protected boolean tera;
+    protected ArrayList<String> weakness;
+    protected ArrayList<String> strength;
 
     public Pokemon(){
         this.stats = new HashMap<>();
         this.moves = new HashMap<>();
+        this.movestypes = new HashMap<>();
         this.health = 500.0f;
         this.name = "Unknown";
         this.type = "Normal";
         this.tera = false;
-        this.weakness = false;
         this.key = new ArrayList<>();
         this.value = new ArrayList<>();
-        this.typearray = new ArrayList<>();
+        this.weakness = new ArrayList<>();
+        this.strength = new ArrayList<>();
     }
     /**
      * This is used for setting the pokemons type based on previously set data
@@ -72,9 +74,30 @@ public abstract class Pokemon{
     /**
      * This is used for calulating the damage done by a move
      * @param move - The move being used
-     * @param pokemon - The pokemon who used the move
+     * @param attackerpokemon - The pokemon who used the move
+     * @param defenderpokemon - The pokemon who used the is defending
      * @param stat - The stat that the move is using
      * @return - returns the damage that was done
      */
-    public abstract Float calcdamage(String move, Pokemon pokemon, String stat);
+    public abstract Float calcdamage(String move, Pokemon attackerpokemon, Pokemon defenderpokemon ,String stat);
+    /**
+     * This is the method used to set a weakness
+     */
+    public abstract void setWeakness();
+    /**
+     * This is the method used to set a strength
+     */
+    public abstract void setStrength();
+    /**
+     * This is used to get a weakness value
+     * @param type - the pokemon type
+     * @return retuns the weakness value
+     */
+    public abstract boolean getweakness(String type);
+    /**
+     * This is used to get a strength value
+     * @param type - the pokemon type
+     * @return retuns the strength value
+     */
+    public abstract boolean getstrength(String type);
 }

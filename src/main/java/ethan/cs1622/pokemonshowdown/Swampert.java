@@ -58,7 +58,8 @@ public class Swampert extends Pokemon{
             while ((line = reader.readLine()) != null) {
                 String[] valueinrow = line.split(" ");
                 this.key.add(valueinrow[0]);
-                this.value.add(Integer.valueOf(valueinrow[1]));
+                this.value.add(Integer.valueOf(valueinrow[2]));
+                this.movestypes.put(valueinrow[0], valueinrow[1]);
             }
             for (String i : key){
                 moves.put(i, value.get(total));
@@ -113,13 +114,67 @@ public class Swampert extends Pokemon{
     /**
      * This is used for calulating the damage done by a move
      * @param move - The move being used
-     * @param pokemon - The pokemon who used the move
+     * @param attackerpokemon - The pokemon who used the move
+     * @param defenderpokemon - The pokemon who used the is defending
      * @param stat - The stat that the move is using
      * @return - returns the damage that was done
      */
     @Override
-    public Float calcdamage(String move, Pokemon pokemon, String stat) {
+    public Float calcdamage(String move, Pokemon attackerpokemon, Pokemon defenderpokemon, String stat) {
         Damagefactory factory = new Damagefactory(getmove(move));
-        return factory.damagefactory(pokemon, stat, getHealth());
+        return factory.damagefactory(attackerpokemon, defenderpokemon, stat, getHealth(), move);
+    }
+
+    /**
+     * This is the method used to set a weakness
+     */
+    @Override
+    public void setWeakness() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(getType() + "weak.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] valueinrow = line.split(" ");
+                this.weakness.add(valueinrow[0]);}}
+        catch (IOException o) {
+            o.getMessage();
+        }
+    }
+
+    /**
+     * This is the method used to set a strength
+     */
+    @Override
+    public void setStrength() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(getType() + "strong.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] valueinrow = line.split(" ");
+                this.strength.add(valueinrow[0]);}}
+        catch (IOException o) {
+            o.getMessage();
+        }
+    }
+    /**
+     * This is used to get a weakness value
+     *
+     * @param type - the pokemon type
+     * @return retuns the weakness value
+     */
+    @Override
+    public boolean getweakness(String type) {
+        if (weakness.contains(type)){return true;}
+        else{return false;}
+    }
+
+    /**
+     * This is used to get a strength value
+     *
+     * @param type - the pokemon type
+     * @return retuns the strength value
+     */
+    @Override
+    public boolean getstrength(String type) {
+        if (strength.contains(type)){return true;}
+        else{return false;}
     }
 }
