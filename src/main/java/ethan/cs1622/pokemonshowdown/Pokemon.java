@@ -19,8 +19,10 @@ public abstract class Pokemon{
     protected boolean tera;
     protected ArrayList<String> weakness;
     protected ArrayList<String> strength;
+    protected String typecheck;
 
     public Pokemon(){
+        this.typecheck = "Normal";
         this.stats = new HashMap<>();
         this.moves = new HashMap<>();
         this.movestypes = new HashMap<>();

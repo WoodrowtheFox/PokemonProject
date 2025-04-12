@@ -18,10 +18,13 @@ class DataStorageTest {
     public void testadd(){
         data.addstats("Attack", "90");
         data.addmoveset("Surf", "100");
+        data.addmovetype("Surf", "Water");
         assertEquals("90", data.getstatvalue("Attack"));
         assertEquals("100", data.getmovevalue("Surf"));
+        assertEquals("Water", data.getmovetype("Surf"));
         assertTrue(data.getstats() instanceof HashMap<String, String>);
         assertTrue(data.getmoves() instanceof HashMap<String, String>);
+        assertTrue(data.getmovetyppes() instanceof HashMap<String, String>);
     }
     /**
      * This is used to test the type methods in Data storage

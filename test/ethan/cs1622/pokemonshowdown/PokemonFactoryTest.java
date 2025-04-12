@@ -17,5 +17,6 @@ class PokemonFactoryTest {
         assertTrue(factory.factory("Swampert") instanceof Swampert);
         assertTrue(factory.factory("Blaziken") instanceof Blaziken);
         assertTrue(factory.factory("Lucario") instanceof Lucario);
+        assertTrue(factory.factory("Lucarios") == null);
     }
 }

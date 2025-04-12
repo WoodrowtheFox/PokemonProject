@@ -18,6 +18,7 @@ public class Swampert extends Pokemon{
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] valueinrow = line.split(" ");
+                this.typecheck = valueinrow[0];
                 this.type = factory.typefactory(valueinrow[0]);
             }
         }
@@ -63,6 +64,7 @@ public class Swampert extends Pokemon{
                 this.key.add(valueinrow[0]);
                 this.value.add(Integer.valueOf(valueinrow[2]));
                 this.movestypes.put(valueinrow[0], valueinrow[1]);
+                this.cpumoves.add(valueinrow[0]);
             }
             for (String i : key){
                 moves.put(i, value.get(total));
@@ -86,6 +88,7 @@ public class Swampert extends Pokemon{
                 String[] valueinrow = line.split(" ");
                 this.key.add(valueinrow[0]);
                 this.value.add(Integer.valueOf(valueinrow[1]));
+                this.cpustats.add(valueinrow[0]);
             }
             for (String i : key){
                 stats.put(i, value.get(total));
@@ -155,11 +158,13 @@ public class Swampert extends Pokemon{
      */
     @Override
     public void setWeakness() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(getType() + "weak.txt"))) {
+        String filename = typecheck + "weak.txt";
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
-            while ((line = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null){
                 String[] valueinrow = line.split(" ");
-                this.weakness.add(valueinrow[0]);}}
+                this.weakness.add(valueinrow[0]);
+            }}
         catch (IOException o) {
             o.getMessage();
         }
@@ -170,7 +175,8 @@ public class Swampert extends Pokemon{
      */
     @Override
     public void setStrength() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(getType() + "strong.txt"))) {
+        String filename = typecheck + "strong.txt";
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] valueinrow = line.split(" ");
@@ -187,8 +193,7 @@ public class Swampert extends Pokemon{
      */
     @Override
     public boolean getweakness(String type) {
-        if (weakness.contains(type)){return true;}
-        else{return false;}
+        return weakness.contains(type);
     }
 
     /**
@@ -199,8 +204,7 @@ public class Swampert extends Pokemon{
      */
     @Override
     public boolean getstrength(String type) {
-        if (strength.contains(type)){return true;}
-        else{return false;}
+        return strength.contains(type);
     }
     /**
      * This is used to get the size of cpu moves

@@ -7,7 +7,6 @@ import java.io.*;
 public class Blaziken extends Pokemon{
 
     public Blaziken(){super();}
-
     /**
      * This is used for setting the pokemons type based on previously set data
      * @param filename - The file with the pokemon type
@@ -19,6 +18,7 @@ public class Blaziken extends Pokemon{
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] valueinrow = line.split(" ");
+                this.typecheck = valueinrow[0];
                 this.type = factory.typefactory(valueinrow[0]);
             }
         }
@@ -64,6 +64,7 @@ public class Blaziken extends Pokemon{
                 this.key.add(valueinrow[0]);
                 this.value.add(Integer.valueOf(valueinrow[2]));
                 this.movestypes.put(valueinrow[0], valueinrow[1]);
+                this.cpumoves.add(valueinrow[0]);
             }
             for (String i : key){
                 moves.put(i, value.get(total));
@@ -87,6 +88,7 @@ public class Blaziken extends Pokemon{
                 String[] valueinrow = line.split(" ");
                 this.key.add(valueinrow[0]);
                 this.value.add(Integer.valueOf(valueinrow[1]));
+                this.cpustats.add(valueinrow[0]);
             }
             for (String i : key){
                 stats.put(i, value.get(total));
@@ -125,6 +127,7 @@ public class Blaziken extends Pokemon{
     public String getmovename(int value) {
         return cpumoves.get(value);
     }
+
     /**
      * This is used to get a name of a stat if cpu is selected
      *
@@ -149,26 +152,31 @@ public class Blaziken extends Pokemon{
         Damagefactory factory = new Damagefactory(getmove(move));
         return factory.damagefactory(attackerpokemon, defenderpokemon, stat, getHealth(), move);
     }
+
     /**
      * This is the method used to set weaknesses
      */
     @Override
     public void setWeakness() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(getType() + "weak.txt"))) {
+        String filename = typecheck + "weak.txt";
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
-            while ((line = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null){
                 String[] valueinrow = line.split(" ");
-                this.weakness.add(valueinrow[0]);}}
+                this.weakness.add(valueinrow[0]);
+            }}
         catch (IOException o) {
             o.getMessage();
         }
     }
+
     /**
      * This is the method used to set strengths
      */
     @Override
     public void setStrength() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(getType() + "strong.txt"))) {
+        String filename = typecheck + "strong.txt";
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] valueinrow = line.split(" ");
@@ -185,9 +193,9 @@ public class Blaziken extends Pokemon{
      */
     @Override
     public boolean getweakness(String type) {
-        if (weakness.contains(type)){return true;}
-        else{return false;}
+        return weakness.contains(type);
     }
+
     /**
      * This is used to get a strength value
      *
@@ -196,8 +204,7 @@ public class Blaziken extends Pokemon{
      */
     @Override
     public boolean getstrength(String type) {
-        if (strength.contains(type)){return true;}
-        else{return false;}
+        return strength.contains(type);
     }
     /**
      * This is used to get the size of cpu moves
@@ -206,7 +213,7 @@ public class Blaziken extends Pokemon{
      */
     @Override
     public int getCpumoves() {
-        return cpumoves.size() - 1;
+        return cpumoves.size()- 1;
     }
     /**
      * This is used to get the size of cpu stats

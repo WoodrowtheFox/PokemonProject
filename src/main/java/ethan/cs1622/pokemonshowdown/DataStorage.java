@@ -71,6 +71,14 @@ public class DataStorage {
         return this.moveset.get(move);
     }
     /**
+     * This is used to get the type of a move
+     * @param move - the move whose type you are looking for
+     * @return - returns the type of the move
+     */
+    public String getmovetype(String move){
+        return this.movetype.get(move);
+    }
+    /**
      * This is used to get the stats hashmap to been iterated through
      * @return - the hashmap
      */

@@ -18,6 +18,7 @@ public class Lucario extends Pokemon{
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] valueinrow = line.split(" ");
+                this.typecheck = valueinrow[0];
                 this.type = factory.typefactory(valueinrow[0]);
             }
         }
@@ -100,7 +101,7 @@ public class Lucario extends Pokemon{
     }
     /**
      * This is used for getting the value of a stat
-     * @param stat - The stat whose value you are looking for
+     * @param stat - The stats whose value you are looking for
      * @return - returns the value of the stat
      */
     @Override
@@ -151,16 +152,19 @@ public class Lucario extends Pokemon{
         Damagefactory factory = new Damagefactory(getmove(move));
         return factory.damagefactory(attackerpokemon, defenderpokemon, stat, getHealth(), move);
     }
+
     /**
      * This is the method used to set weaknesses
      */
     @Override
     public void setWeakness() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(getType() + "weak.txt"))) {
+        String filename = typecheck + "weak.txt";
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
-            while ((line = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null){
                 String[] valueinrow = line.split(" ");
-                this.weakness.add(valueinrow[0]);}}
+                this.weakness.add(valueinrow[0]);
+            }}
         catch (IOException o) {
             o.getMessage();
         }
@@ -171,7 +175,8 @@ public class Lucario extends Pokemon{
      */
     @Override
     public void setStrength() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(getType() + "strong.txt"))) {
+        String filename = typecheck + "strong.txt";
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] valueinrow = line.split(" ");
@@ -188,8 +193,7 @@ public class Lucario extends Pokemon{
      */
     @Override
     public boolean getweakness(String type) {
-        if (weakness.contains(type)){return true;}
-        else{return false;}
+        return weakness.contains(type);
     }
 
     /**
@@ -200,8 +204,7 @@ public class Lucario extends Pokemon{
      */
     @Override
     public boolean getstrength(String type) {
-        if (strength.contains(type)){return true;}
-        else{return false;}
+        return strength.contains(type);
     }
     /**
      * This is used to get the size of cpu moves
@@ -210,7 +213,7 @@ public class Lucario extends Pokemon{
      */
     @Override
     public int getCpumoves() {
-        return cpumoves.size() - 1;
+        return cpumoves.size()- 1;
     }
     /**
      * This is used to get the size of cpu stats
