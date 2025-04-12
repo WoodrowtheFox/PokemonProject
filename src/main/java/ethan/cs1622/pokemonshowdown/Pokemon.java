@@ -3,12 +3,17 @@ package ethan.cs1622.pokemonshowdown;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * This is the abstract class for all pokemon
+ */
 public abstract class Pokemon{
     protected HashMap<String, Integer> stats;
     protected HashMap<String, Integer> moves;
     protected HashMap<String, String> movestypes;
     protected ArrayList<String> key;
     protected ArrayList<Integer> value;
+    protected ArrayList<String> cpumoves;
+    protected ArrayList<String> cpustats;
     protected String name;
     protected String type;
     protected float health;
@@ -24,6 +29,8 @@ public abstract class Pokemon{
         this.name = "Unknown";
         this.type = "Normal";
         this.tera = false;
+        this.cpumoves = new ArrayList<>();
+        this.cpustats = new ArrayList<>();
         this.key = new ArrayList<>();
         this.value = new ArrayList<>();
         this.weakness = new ArrayList<>();
@@ -72,6 +79,18 @@ public abstract class Pokemon{
      */
     public abstract Integer getmove(String move);
     /**
+     * This is used to get a name of a move if cpu is selected
+     * @param value - a randomly generated value
+     * @return - return the move name
+     */
+    public abstract String getmovename(int value);
+    /**
+     * This is used to get a name of a stat if cpu is selected
+     * @param value - a randomly generated value
+     * @return - return the stat name
+     */
+    public abstract String getstatname(int value);
+    /**
      * This is used for calulating the damage done by a move
      * @param move - The move being used
      * @param attackerpokemon - The pokemon who used the move
@@ -81,11 +100,11 @@ public abstract class Pokemon{
      */
     public abstract Float calcdamage(String move, Pokemon attackerpokemon, Pokemon defenderpokemon ,String stat);
     /**
-     * This is the method used to set a weakness
+     * This is the method used to set weaknesses
      */
     public abstract void setWeakness();
     /**
-     * This is the method used to set a strength
+     * This is the method used to set strengths
      */
     public abstract void setStrength();
     /**
@@ -100,4 +119,15 @@ public abstract class Pokemon{
      * @return retuns the strength value
      */
     public abstract boolean getstrength(String type);
+    /**
+     * This is used to get the size of cpu moves
+     * @return - returns the size of cpu moves
+     */
+    public abstract int getCpumoves();
+    /**
+     * This is used to get the size of cpu stats
+     * @return - returns the size of cpu stats
+     */
+    public abstract int getCpustats();
+
 }

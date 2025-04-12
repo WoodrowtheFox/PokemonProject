@@ -18,8 +18,6 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
-
-
 /**
  * This is the class used to set data about pokemon
  */

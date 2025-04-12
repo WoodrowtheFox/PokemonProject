@@ -1,9 +1,9 @@
 package ethan.cs1622.pokemonshowdown;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.Random;
-
+/**
+ * This is the class for the pokemon swampert
+ */
 public class Swampert extends Pokemon{
 
     public Swampert(){super();}
@@ -112,10 +112,32 @@ public class Swampert extends Pokemon{
         return moves.get(move);
     }
     /**
+     * This is used to get a name of a move if cpu is selected
+     *
+     * @param value - a randomly generated value
+     * @return - return the move name
+     */
+    @Override
+    public String getmovename(int value) {
+        return cpumoves.get(value);
+    }
+
+    /**
+     * This is used to get a name of a stat if cpu is selected
+     *
+     * @param value - a randomly generated value
+     * @return - return the stat name
+     */
+    @Override
+    public String getstatname(int value) {
+        return cpustats.get(value);
+    }
+
+    /**
      * This is used for calulating the damage done by a move
      * @param move - The move being used
      * @param attackerpokemon - The pokemon who used the move
-     * @param defenderpokemon - The pokemon who used the is defending
+     * @param defenderpokemon - The pokemon who is defending
      * @param stat - The stat that the move is using
      * @return - returns the damage that was done
      */
@@ -126,7 +148,7 @@ public class Swampert extends Pokemon{
     }
 
     /**
-     * This is the method used to set a weakness
+     * This is the method used to set weaknesses
      */
     @Override
     public void setWeakness() {
@@ -141,7 +163,7 @@ public class Swampert extends Pokemon{
     }
 
     /**
-     * This is the method used to set a strength
+     * This is the method used to set strengths
      */
     @Override
     public void setStrength() {
@@ -176,5 +198,23 @@ public class Swampert extends Pokemon{
     public boolean getstrength(String type) {
         if (strength.contains(type)){return true;}
         else{return false;}
+    }
+    /**
+     * This is used to get the size of cpu moves
+     *
+     * @return - returns the size of cpu moves
+     */
+    @Override
+    public int getCpumoves() {
+        return cpumoves.size()- 1;
+    }
+    /**
+     * This is used to get the size of cpu stats
+     *
+     * @return - returns the size of cpu stats
+     */
+    @Override
+    public int getCpustats() {
+        return cpustats.size() - 1;
     }
 }

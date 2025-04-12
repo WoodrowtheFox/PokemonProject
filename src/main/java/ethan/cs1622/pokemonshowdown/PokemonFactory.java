@@ -5,7 +5,7 @@ package ethan.cs1622.pokemonshowdown;
  */
 public class PokemonFactory {
     /**
-     * The factory the creates the pokemon
+     * This factory the creates the pokemon
      * @param name - name of the pokemon
      * @return - the new pokemon
      */
@@ -19,6 +19,6 @@ public class PokemonFactory {
         else if (name.equals("Blaziken")){
             return new Blaziken();
         }
-        else {return new Swampert();}
+        else {return null;}
     }
 }

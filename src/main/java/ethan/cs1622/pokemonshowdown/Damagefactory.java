@@ -2,7 +2,6 @@ package ethan.cs1622.pokemonshowdown;
 
 import java.util.HashMap;
 import java.util.Random;
-
 /**
  * This class is used to calculate the damage done by a move
  */
@@ -22,7 +21,7 @@ public class Damagefactory {
     /**
      * The function that calculates the effects of a move
      * @param attackerpokemon - the pokemon using the move
-     * @param defenderpokemon - the pokemon using the defending the move
+     * @param defenderpokemon - the pokemon the defending the move
      * @param stat - the stat being used
      * @param health - the health of the opponent
      * @return - the amount/effect of the move

@@ -22,7 +22,7 @@ import java.util.Random;
 
 import static javafx.application.Application.launch;
 /**
- * This is the main part of the program that is used the actual battles
+ * This is the main part of the program that is used to simulate the actual battles
  */
 public class Battle extends Application {
 
@@ -30,6 +30,10 @@ public class Battle extends Application {
     private Pokemon opponent;
     private BorderPane drawingPane;
     private BorderPane pane;
+
+    Random rand = new Random();
+    PokemonFactory factory = new PokemonFactory();
+    CPUFactory cpufactory = new CPUFactory();
 
     CheckBox cpu = new CheckBox("CPU");
     CheckBox circle = new CheckBox("Circle");
@@ -116,13 +120,21 @@ public class Battle extends Application {
      * @param e The button being clicked
      */
     public void setpokemon(ActionEvent e){
+        if(cpu.isSelected()){
+            this.player = factory.factory(player_pokemon.getText());
+            player.addmove((player_pokemon.getText()+ "moves" + ".txt"));
+            player.addstat((player_pokemon.getText()+ "stats" + ".txt"));
+            this.opponent = cpufactory.factory(rand.nextInt(1, 3));
+            opponent.addmove((oppnent_pokemon.getText()+ "moves" + ".txt"));
+            opponent.addstat((oppnent_pokemon.getText()+ "stats" + ".txt"));}
+        else{
         PokemonFactory factory = new PokemonFactory();
         this.player = factory.factory(player_pokemon.getText());
         player.addmove((player_pokemon.getText()+ "moves" + ".txt"));
         player.addstat((player_pokemon.getText()+ "stats" + ".txt"));
         this.opponent = factory.factory(oppnent_pokemon.getText());
         opponent.addmove((oppnent_pokemon.getText()+ "moves" + ".txt"));
-        opponent.addstat((oppnent_pokemon.getText()+ "stats" + ".txt"));
+        opponent.addstat((oppnent_pokemon.getText()+ "stats" + ".txt"));}
     }
     /**
      * This is used for calculating the effects of the players move
@@ -137,8 +149,12 @@ public class Battle extends Application {
      * @param e The button being clicked
      */
     public void oppnent(ActionEvent e){
+        if(cpu.isSelected()){
+            Float value = opponent.calcdamage(opponent.getmovename(rand.nextInt(0, opponent.getCpumoves())), opponent, player, opponent.getstatname(rand.nextInt(0, opponent.getCpustats())));
+            playerhealthset(value);}
+        else{
         Float value = opponent.calcdamage(oppnent_move.getText(), opponent, player, oppnent_stat.getText());
-        playerhealthset(value);
+        playerhealthset(value);}
     }
     /**
      * This is used to change the players health after an opponents move
