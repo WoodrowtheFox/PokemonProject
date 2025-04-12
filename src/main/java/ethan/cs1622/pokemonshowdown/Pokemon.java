@@ -7,6 +7,7 @@ import java.util.HashMap;
  * This is the abstract class for all pokemon
  */
 public abstract class Pokemon{
+    protected Type type;
     protected HashMap<String, Integer> stats;
     protected HashMap<String, Integer> moves;
     protected HashMap<String, String> movestypes;
@@ -14,8 +15,6 @@ public abstract class Pokemon{
     protected ArrayList<Integer> value;
     protected ArrayList<String> cpumoves;
     protected ArrayList<String> cpustats;
-    protected String name;
-    protected String type;
     protected float health;
     protected boolean tera;
     protected ArrayList<String> weakness;
@@ -26,8 +25,6 @@ public abstract class Pokemon{
         this.moves = new HashMap<>();
         this.movestypes = new HashMap<>();
         this.health = 500.0f;
-        this.name = "Unknown";
-        this.type = "Normal";
         this.tera = false;
         this.cpumoves = new ArrayList<>();
         this.cpustats = new ArrayList<>();
@@ -45,7 +42,7 @@ public abstract class Pokemon{
      * This is used for getting a pokemons type
      * @return - returns the pokemons type
      */
-    public abstract String getType();
+    public abstract Type getType();
     /**
      * This is used to set the current health of a pokemon
      * @param health - their health

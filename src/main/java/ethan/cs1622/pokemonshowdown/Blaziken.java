@@ -14,12 +14,15 @@ public class Blaziken extends Pokemon{
      */
     @Override
     public void setType(String filename) {
+        TypeFactory factory = new TypeFactory();
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] valueinrow = line.split(" ");
-                this.type = (valueinrow[0]);}}
-        catch (IOException o) {
+                this.type = factory.typefactory(valueinrow[0]);
+            }
+        }
+        catch(IOException o){
             o.getMessage();
         }
     }
@@ -28,7 +31,7 @@ public class Blaziken extends Pokemon{
      * @return - returns the pokemons type
      */
     @Override
-    public String getType() {
+    public Type getType() {
         return this.type;
     }
     /**

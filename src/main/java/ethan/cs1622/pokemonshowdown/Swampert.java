@@ -13,21 +13,24 @@ public class Swampert extends Pokemon{
      */
     @Override
     public void setType(String filename) {
+        TypeFactory factory = new TypeFactory();
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] valueinrow = line.split(" ");
-                this.type = (valueinrow[0]);}}
-        catch (IOException o) {
-            o.getMessage();
+                this.type = factory.typefactory(valueinrow[0]);
+            }
         }
+            catch(IOException o){
+                o.getMessage();
+            }
     }
     /**
      * This is used for getting a pokemons type
      * @return - returns the pokemons type
      */
     @Override
-    public String getType() {
+    public Type getType() {
         return this.type;
     }
     /**
