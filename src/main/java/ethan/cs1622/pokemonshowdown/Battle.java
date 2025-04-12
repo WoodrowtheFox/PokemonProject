@@ -137,7 +137,7 @@ public class Battle extends Application {
      * @param e The button being clicked
      */
     public void oppnent(ActionEvent e){
-        Float value = opponent.calcdamage(oppnent_pokemon.getText(), opponent, player, oppnent_stat.getText());
+        Float value = opponent.calcdamage(oppnent_move.getText(), opponent, player, oppnent_stat.getText());
         playerhealthset(value);
     }
     /**
@@ -145,7 +145,10 @@ public class Battle extends Application {
      * @param value - The value of the damage
      */
     public void playerhealthset(Float value){
-        if(player.getHealth() > 0){player.setHealth((player.getHealth() - value));}
+        if(player.getHealth() > 0){
+            player.setHealth((player.getHealth() - value));
+            System.out.print("A total of " + value + " was done!");
+        }
         else{System.out.println("You Wins!");}
     }
     /**
@@ -153,7 +156,10 @@ public class Battle extends Application {
      * @param value - The value of the damage
      */
     public void opponenthealthset(Float value){
-        if(opponent.getHealth() > 0){opponent.setHealth((opponent.getHealth() - value));}
+        if(opponent.getHealth() > 0){
+            System.out.print("A total of " + value + " was done!");
+            opponent.setHealth((opponent.getHealth() - value));
+        }
         else{System.out.println("You Wins!");}
     }
     /**

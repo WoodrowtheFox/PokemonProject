@@ -124,13 +124,19 @@ public class Lucario extends Pokemon{
         Damagefactory factory = new Damagefactory(getmove(move));
         return factory.damagefactory(attackerpokemon, defenderpokemon, stat, getHealth(), move);
     }
-
     /**
      * This is the method used to set a weakness
      */
     @Override
     public void setWeakness() {
-
+        try (BufferedReader reader = new BufferedReader(new FileReader(getType() + "weak.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] valueinrow = line.split(" ");
+                this.weakness.add(valueinrow[0]);}}
+        catch (IOException o) {
+            o.getMessage();
+        }
     }
 
     /**
@@ -138,9 +144,15 @@ public class Lucario extends Pokemon{
      */
     @Override
     public void setStrength() {
-
+        try (BufferedReader reader = new BufferedReader(new FileReader(getType() + "strong.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] valueinrow = line.split(" ");
+                this.strength.add(valueinrow[0]);}}
+        catch (IOException o) {
+            o.getMessage();
+        }
     }
-
     /**
      * This is used to get a weakness value
      *

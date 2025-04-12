@@ -3,7 +3,6 @@ import javafx.application.Application;
 import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -18,11 +17,8 @@ import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
 
-import static javafx.application.Application.launch;
 
 /**
  * This is the class used to set data about pokemon
@@ -218,6 +214,7 @@ public class Set extends Application {
                 writer.write(moveset.get(i));
                 writer.newLine();
             }
+            System.out.print("All Data Saved!");
         }
         catch (FileNotFoundException fnf){
             System.out.println(fnf.getMessage());

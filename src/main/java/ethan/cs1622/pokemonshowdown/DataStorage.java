@@ -4,7 +4,7 @@ import java.util.HashMap;
 /**
  * This is the class used for storing data during the setting of pokemon data
  */
-public class DataStorage extends Set{
+public class DataStorage {
     private HashMap<String, String> stats;
     private HashMap<String, String> moveset;
     private HashMap<String, String> movetype;

@@ -21,7 +21,8 @@ public class Damagefactory {
     }
     /**
      * The function that calculates the effects of a move
-     * @param pokemon - the pokemon using the move
+     * @param attackerpokemon - the pokemon using the move
+     * @param defenderpokemon - the pokemon using the defending the move
      * @param stat - the stat being used
      * @param health - the health of the opponent
      * @return - the amount/effect of the move
