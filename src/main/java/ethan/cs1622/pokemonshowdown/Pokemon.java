@@ -2,7 +2,6 @@ package ethan.cs1622.pokemonshowdown;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 /**
  * This is the abstract class for all pokemon
  */
@@ -128,5 +127,10 @@ public abstract class Pokemon{
      * @return - returns the size of cpu stats
      */
     public abstract int getCpustats();
+    /**
+     * This is used to get a CPU pokemon name
+     * @return - the pokemon name
+     */
+    public abstract String getCpuname();
 
 }

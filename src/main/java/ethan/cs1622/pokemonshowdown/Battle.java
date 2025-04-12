@@ -125,8 +125,8 @@ public class Battle extends Application {
             player.addmove((player_pokemon.getText()+ "moves" + ".txt"));
             player.addstat((player_pokemon.getText()+ "stats" + ".txt"));
             this.opponent = cpufactory.factory(rand.nextInt(1, 3));
-            opponent.addmove((oppnent_pokemon.getText()+ "moves" + ".txt"));
-            opponent.addstat((oppnent_pokemon.getText()+ "stats" + ".txt"));}
+            opponent.addmove((opponent.getCpuname() + "moves" + ".txt"));
+            opponent.addstat((opponent.getCpuname() + "stats" + ".txt"));}
         else{
         PokemonFactory factory = new PokemonFactory();
         this.player = factory.factory(player_pokemon.getText());
@@ -150,7 +150,8 @@ public class Battle extends Application {
      */
     public void oppnent(ActionEvent e){
         if(cpu.isSelected()){
-            Float value = opponent.calcdamage(opponent.getmovename(rand.nextInt(0, opponent.getCpumoves())), opponent, player, opponent.getstatname(rand.nextInt(0, opponent.getCpustats())));
+
+            Float value = opponent.calcdamage(cpufactory.movefactory(opponent), opponent, player, cpufactory.statfactory(opponent));
             playerhealthset(value);}
         else{
         Float value = opponent.calcdamage(oppnent_move.getText(), opponent, player, oppnent_stat.getText());
@@ -173,8 +174,8 @@ public class Battle extends Application {
      */
     public void opponenthealthset(Float value){
         if(opponent.getHealth() > 0){
-            System.out.print("A total of " + value + " was done!");
             opponent.setHealth((opponent.getHealth() - value));
+            System.out.print("A total of " + value + " was done!");
         }
         else{System.out.println("You Wins!");}
     }

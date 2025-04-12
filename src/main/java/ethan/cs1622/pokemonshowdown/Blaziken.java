@@ -208,7 +208,7 @@ public class Blaziken extends Pokemon{
      */
     @Override
     public int getCpumoves() {
-        return cpumoves.size()- 1;
+        return cpumoves.size();
     }
     /**
      * This is used to get the size of cpu stats
@@ -217,6 +217,16 @@ public class Blaziken extends Pokemon{
      */
     @Override
     public int getCpustats() {
-        return cpustats.size() - 1;
+        return cpustats.size();
+    }
+
+    /**
+     * This is used to get a CPU pokemon name
+     *
+     * @return - the pokemon name
+     */
+    @Override
+    public String getCpuname() {
+        return "Blaziken";
     }
 }

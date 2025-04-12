@@ -66,8 +66,9 @@ class BlazikenTest {
         blaziken.addstat("Swampertstats.txt");
         assertEquals("Surf", blaziken.getmovename(0));
         assertEquals("Attack", blaziken.getstatname(0));
-        assertEquals(0, blaziken.getCpumoves());
-        assertEquals(0, blaziken.getCpustats());
+        assertEquals(1, blaziken.getCpumoves());
+        assertEquals(1, blaziken.getCpustats());
+        assertEquals("Blaziken", blaziken.getCpuname());
     }
 }
 

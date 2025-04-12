@@ -66,8 +66,9 @@ class SwampertTest {
         swampert.addstat("Swampertstats.txt");
         assertEquals("Surf", swampert.getmovename(0));
         assertEquals("Attack", swampert.getstatname(0));
-        assertEquals(0, swampert.getCpumoves());
-        assertEquals(0, swampert.getCpustats());
+        assertEquals(1, swampert.getCpumoves());
+        assertEquals(1, swampert.getCpustats());
+        assertEquals("Swampert", swampert.getCpuname());
         }
     }
 

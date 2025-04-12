@@ -126,7 +126,6 @@ public class Lucario extends Pokemon{
     public String getmovename(int value) {
         return cpumoves.get(value);
     }
-
     /**
      * This is used to get a name of a stat if cpu is selected
      *
@@ -137,7 +136,6 @@ public class Lucario extends Pokemon{
     public String getstatname(int value) {
         return cpustats.get(value);
     }
-
     /**
      * This is used for calulating the damage done by a move
      * @param move - The move being used
@@ -209,7 +207,7 @@ public class Lucario extends Pokemon{
      */
     @Override
     public int getCpumoves() {
-        return cpumoves.size()- 1;
+        return cpumoves.size();
     }
     /**
      * This is used to get the size of cpu stats
@@ -218,6 +216,16 @@ public class Lucario extends Pokemon{
      */
     @Override
     public int getCpustats() {
-        return cpustats.size() - 1;
+        return cpustats.size();
+    }
+
+    /**
+     * This is used to get a CPU pokemon name
+     *
+     * @return - the pokemon name
+     */
+    @Override
+    public String getCpuname() {
+        return "Lucario";
     }
 }

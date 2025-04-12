@@ -66,8 +66,9 @@ class LucarioTest {
         lucario.addstat("Swampertstats.txt");
         assertEquals("Surf", lucario.getmovename(0));
         assertEquals("Attack", lucario.getstatname(0));
-        assertEquals(0, lucario.getCpumoves());
-        assertEquals(0, lucario.getCpustats());
+        assertEquals(1, lucario.getCpumoves());
+        assertEquals(1, lucario.getCpustats());
+        assertEquals("Lucario", lucario.getCpuname());
     }
 }
 

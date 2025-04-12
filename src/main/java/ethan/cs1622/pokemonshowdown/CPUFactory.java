@@ -1,6 +1,8 @@
 package ethan.cs1622.pokemonshowdown;
+
+import java.util.Random;
 /**
- * This is the class for getting a CPUS pokemon out of a factory
+ * This is the class for getting a CPUS data out of a factory
  */
 public class CPUFactory extends PokemonFactory{
     /**
@@ -19,6 +21,28 @@ public class CPUFactory extends PokemonFactory{
             return new Blaziken();
         }
         else {return null;}
+    }
+    /**
+     * This is used for generating a cpu move
+     * @param pokemon - the cpus pokemon
+     * @return - returns the move
+     */
+    public String movefactory(Pokemon pokemon){
+        int a = pokemon.getCpumoves();
+        Random rand = new Random();
+        if(a == 0){return pokemon.getmovename(0);}
+        else{return pokemon.getmovename(rand.nextInt(0, a));}
+    }
+    /**
+     * This is used for generating a cpu stat
+     * @param pokemon - the cpus pokemon
+     * @return - returns the stat
+     */
+    public String statfactory(Pokemon pokemon){
+        int a = pokemon.getCpustats();
+        Random rand = new Random();
+        if(a == 0){return pokemon.getstatname(0);}
+        else{return pokemon.getstatname(rand.nextInt(0, a));}
     }
     }
 
