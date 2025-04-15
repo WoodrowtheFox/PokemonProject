@@ -1,0 +1,2 @@
+This is a personal project that was started for a computer science class and is based on the Pokemon battling simulator, pokemon showdown. I will hopefully continue to update this project as time goes on and may add new pokemon
+and new features such as items or gimmicks like: dynamax and tera types. This project is meant to demostrate the skills that I have aquired during the courses that I have taken. 
